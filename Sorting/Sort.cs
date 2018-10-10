@@ -4,8 +4,15 @@ using System.Collections.Generic;
 
 namespace Sorting
 {
+    /// <summary>
+    /// Provides methods for sorting arrays.
+    /// </summary>
     public static class Sort
     {
+        /// <summary>
+        /// Sorts the <paramref name="items"/> using Quicksort algorithm.
+        /// </summary>
+        /// <param name="items">The array to sort.</param>
         public static void QuickSort<T>(this T[] items)
         {
             if (items == null)
@@ -15,6 +22,11 @@ namespace Sorting
             QuickSort(items, 0, items.Length - 1, Comparer<T>.Default);
         }
 
+        /// <summary>
+        /// Sorts the <paramref name="items"/> using Quicksort algorithm.
+        /// </summary>
+        /// <param name="items">The array to sort.</param>
+        /// <param name="comparer">The comparer used to compare array elements.</param>
         public static void QuickSort<T>(this T[] items, IComparer<T> comparer)
         {
             if (items == null)
@@ -64,6 +76,10 @@ namespace Sorting
             item2 = item;
         }
 
+        /// <summary>
+        /// Sorts the <paramref name="items"/> using MergeSort algorithm.
+        /// </summary>
+        /// <param name="items">The array to sort.</param>
         public static void MergeSort<T>(this T[] items)
         {
             if (items == null)
@@ -73,6 +89,11 @@ namespace Sorting
             MergeSort(items, 0, items.Length - 1, Comparer<T>.Default);
         }
 
+        /// <summary>
+        /// Sorts the <paramref name="items"/> using MergeSort algorithm.
+        /// </summary>
+        /// <param name="items">The array to sort.</param>
+        /// <param name="comparer">The comparer used to compare array elements.</param>
         public static void MergeSort<T>(this T[] items, IComparer<T> comparer)
         {
             if (items == null)
