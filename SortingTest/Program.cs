@@ -4,9 +4,9 @@ using Sorting;
 
 namespace SortingTest
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Random random = new Random();
 

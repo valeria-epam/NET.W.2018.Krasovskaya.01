@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
 namespace Sorting
 {
     /// <summary>
@@ -19,6 +18,7 @@ namespace Sorting
             {
                 throw new ArgumentNullException(nameof(items));
             }
+
             QuickSort(items, 0, items.Length - 1, Comparer<T>.Default);
         }
 
@@ -42,40 +42,6 @@ namespace Sorting
             QuickSort(items, 0, items.Length - 1, comparer);
         }
 
-        private static void QuickSort<T>(T[] items, int firstIndex, int lastIndex, IComparer<T> comparer)
-        {
-            if (firstIndex < lastIndex)
-            {
-                int p = Partition(items, firstIndex, lastIndex, comparer);
-                QuickSort(items, firstIndex, p - 1, comparer);
-                QuickSort(items, p + 1, lastIndex, comparer);
-            }
-        }
-
-        private static int Partition<T>(T[] items, int firstIndex, int lastIndex, IComparer<T> comparer)
-        {
-            int middle = (lastIndex - firstIndex) / 2 + firstIndex;
-            Swap(ref items[middle], ref items[lastIndex]);
-            int b = firstIndex;
-            for (int i = firstIndex; i < lastIndex; i++)
-            {
-                if (comparer.Compare(items[i], items[lastIndex]) < 0)
-                {
-                    Swap(ref items[i], ref items[b]);
-                    b += 1;
-                }
-            }
-            Swap(ref items[lastIndex], ref items[b]);
-            return b;
-        }
-
-        private static void Swap<T>(ref T item1, ref T item2)
-        {
-            T item = item1;
-            item1 = item2;
-            item2 = item;
-        }
-
         /// <summary>
         /// Sorts the <paramref name="items"/> using MergeSort algorithm.
         /// </summary>
@@ -86,6 +52,7 @@ namespace Sorting
             {
                 throw new ArgumentNullException(nameof(items));
             }
+
             MergeSort(items, 0, items.Length - 1, Comparer<T>.Default);
         }
 
@@ -109,12 +76,46 @@ namespace Sorting
             MergeSort(items, 0, items.Length - 1, comparer);
         }
 
-        private static void MergeSort<T>(T[] items, int firstIndex, int lastIndex, IComparer<T> comparer)
+        private static void QuickSort<T>(T[] items, int firstIndex, int lastIndex, IComparer<T> comparer)
         {
-
             if (firstIndex < lastIndex)
             {
-                int middleIndex = firstIndex + (lastIndex - firstIndex) / 2;
+                int p = Partition(items, firstIndex, lastIndex, comparer);
+                QuickSort(items, firstIndex, p - 1, comparer);
+                QuickSort(items, p + 1, lastIndex, comparer);
+            }
+        }
+
+        private static int Partition<T>(T[] items, int firstIndex, int lastIndex, IComparer<T> comparer)
+        {
+            int middle = ((lastIndex - firstIndex) / 2) + firstIndex;
+            Swap(ref items[middle], ref items[lastIndex]);
+            int b = firstIndex;
+            for (int i = firstIndex; i < lastIndex; i++)
+            {
+                if (comparer.Compare(items[i], items[lastIndex]) < 0)
+                {
+                    Swap(ref items[i], ref items[b]);
+                    b += 1;
+                }
+            }
+
+            Swap(ref items[lastIndex], ref items[b]);
+            return b;
+        }
+
+        private static void Swap<T>(ref T item1, ref T item2)
+        {
+            T item = item1;
+            item1 = item2;
+            item2 = item;
+        }
+
+        private static void MergeSort<T>(T[] items, int firstIndex, int lastIndex, IComparer<T> comparer)
+        {
+            if (firstIndex < lastIndex)
+            {
+                int middleIndex = firstIndex + ((lastIndex - firstIndex) / 2);
                 MergeSort(items, firstIndex, middleIndex, comparer);
                 MergeSort(items, middleIndex + 1, lastIndex, comparer);
                 ArrayMergeSortInPlace(items, firstIndex, middleIndex, lastIndex, comparer);
@@ -157,7 +158,6 @@ namespace Sorting
                     j += 1;
                 }
             }
-
         }
     }
 }
