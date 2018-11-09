@@ -86,6 +86,14 @@ namespace Sorting
             }
         }
 
+        /// <summary>
+        /// Partitions the specified items.
+        /// </summary>
+        /// <param name="items">The items.</param>
+        /// <param name="firstIndex">The first index.</param>
+        /// <param name="lastIndex">The last index.</param>
+        /// <param name="comparer">The comparer.</param>
+        /// <returns></returns>
         private static int Partition<T>(T[] items, int firstIndex, int lastIndex, IComparer<T> comparer)
         {
             int middle = ((lastIndex - firstIndex) / 2) + firstIndex;
@@ -104,6 +112,10 @@ namespace Sorting
             return b;
         }
 
+        /// <summary>
+        /// Swaps the specified <paramref name="item1"/> to <paramref name="item2"/>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         private static void Swap<T>(ref T item1, ref T item2)
         {
             T item = item1;
